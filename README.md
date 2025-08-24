@@ -7,6 +7,10 @@ consider** [becoming a financial member of BeeWare](https://beeware.org/contribu
 
 qof | Quickly Organize Files!
 
+What is this app for?
+===
+If you have a messy folder and want to organize the type of files, click *Add*, first enter the name of the folder. Then enter the extension of the type of file.
+
 How to use?
 ===
 **1.** Of course you have to download the file first! *[Click Here](https://github.com/devs-des1re/qof/releases/tag/v1.0.0/qof.v1.0.0.msi/)*
@@ -28,5 +32,6 @@ Logs
 
 All rights reserved devs_des1re 2025
 ===
+
 
 
