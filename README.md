@@ -9,7 +9,7 @@ qof | Quickly Organize Files!
 
 How to use?
 ===
-**1.** Of course you have to download the file first! *[Click Here](https://github.com/devs-des1re/qof/releases/tag/v1.0.0/qof-v1.0.0.msi/)*
+**1.** Of course you have to download the file first! *[Click Here](https://github.com/devs-des1re/qof/releases/tag/v1.0.0/qof.v1.0.0.msi/)*
 
 **2.** Once you have finished the installtion, open up the app. From there select a folder you want to organize.
 
@@ -28,4 +28,5 @@ Logs
 
 All rights reserved devs_des1re 2025
 ===
+
 
