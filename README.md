@@ -37,10 +37,11 @@ Logs
 
 Notes
 ===
-~~The extensions column is case sensitive for your information~~
+- ~~The extensions column is case sensitive for your information~~
 
 All rights reserved devs_des1re 2025
 ===
+
 
 
 
