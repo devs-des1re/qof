@@ -31,12 +31,17 @@ Logs
 
 **v1.0.0** - First release of qof!
 
+**v1.1.0:**
+- Added icon to the Debugger console
+- Removed case sensitive extension feature
+
 Notes
 ===
-The extensions column is case sensitive for your information
+~~The extensions column is case sensitive for your information~~
 
 All rights reserved devs_des1re 2025
 ===
+
 
 
 
