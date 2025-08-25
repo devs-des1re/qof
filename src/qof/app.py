@@ -168,7 +168,7 @@ class MainWindow(QMainWindow):
                         for filename in os.listdir(self.folder_location.text()):
                             file_path = os.path.join(self.folder_location.text(), filename)
 
-                            if os.path.isfile(file_path) and filename.endswith(f".{extension_name}"):
+                            if os.path.isfile(file_path) and filename.endswith(f".{extension_name.lower()}"):
                                 shutil.move(file_path, folder_path)
                                 print("-----------------------------------------------------------------")
                                 print(f"Success: Moved '{file_path}' to '{folder_path}'")
@@ -253,8 +253,10 @@ class MainWindow(QMainWindow):
 class ConsoleWindow(QTextEdit):
     def __init__(self):
         super().__init__()
+        self.resources_path = Path(__file__).parent / "resources"
         self.setWindowTitle("Debugger")
         self.setGeometry(0, 0, 400, 400)
+        self.setWindowIcon(QPixmap(self.resources_path / "Icon.ico"))
         self._buffer = ""
 
         self.__init__UI()
