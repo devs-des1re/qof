@@ -38,14 +38,4 @@ Logs
 Notes
 ===
 - ~~The extensions column is case sensitive for your information~~
-
-All rights reserved devs_des1re 2025
-===
-
-
-
-
-
-
-
-
+- Don't add a period to the extensions column otherwise it won't work
