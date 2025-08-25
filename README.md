@@ -7,6 +7,11 @@ consider** [becoming a financial member of BeeWare](https://beeware.org/contribu
 
 qof | Quickly Organize Files!
 
+Tutorials
+===
+**devs_des1re:** https://youtu.be/CYn6uMCGKEM
+<img src="https://i.ibb.co/F4pbtb1Y/New-Project.png">
+
 How to use?
 ===
 **1.** Of course you have to download the file first! *[Click Here](https://github.com/devs-des1re/qof/releases/tag/v1.0.0/qof.v1.0.0.msi/)*
@@ -28,6 +33,7 @@ Logs
 
 All rights reserved devs_des1re 2025
 ===
+
 
 
 
