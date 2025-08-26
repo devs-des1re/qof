@@ -6,6 +6,7 @@ qof | Quickly Organize Files!
 consider** [becoming a financial member of BeeWare](https://beeware.org/contributing/membership).
 
 qof | Quickly Organize Files!
+`Sorts files by extenions into customizable folders.`
 
 Tutorials
 ===
@@ -39,3 +40,4 @@ Notes
 ===
 - ~~The extensions column is case sensitive for your information~~
 - Don't add a period to the extensions column otherwise it won't work
+
