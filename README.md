@@ -11,7 +11,9 @@ qof | Quickly Organize Files!
 
 Tutorials
 ===
-**devs_des1re:** https://youtu.be/CYn6uMCGKEM
+**devs_des1re:** 
+- **Long Form:** https://youtu.be/CYn6uMCGKEM
+- **Short:** https://www.youtube.com/shorts/5JaeavMPJ4E
 <img src="https://i.ibb.co/F4pbtb1Y/New-Project.png">
 
 How to use?
@@ -41,5 +43,6 @@ Notes
 ===
 - ~~The extensions column is case sensitive for your information~~
 - Don't add a period to the extensions column otherwise it won't work
+
 
 
