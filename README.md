@@ -7,7 +7,7 @@ consider** [becoming a financial member of BeeWare](https://beeware.org/contribu
 
 qof | Quickly Organize Files!
 
-`Sorts files by extenions into customizable folders.`
+```Tired of messy folders all over your device? My app makes organization easy and efficient. With just some ajdusted settings to your preference, you can quickly sort your files by their extensions into renameable folders. Whether it's documents, images, videos or python files :), everything can find its destination```
 
 Tutorials
 ===
@@ -43,6 +43,7 @@ Notes
 ===
 - ~~The extensions column is case sensitive for your information~~
 - Don't add a period to the extensions column otherwise it won't work
+
 
 
 
