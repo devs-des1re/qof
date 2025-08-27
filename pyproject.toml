@@ -1,8 +1,70 @@
+[build-system]
+requires = [
+    "setuptools >= 80",
+    "setuptools_scm >= 9.2",
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "qof"
+description = "qof | Quickly Organize Files!"
+# requires-python = ">= 3.10"
+readme = "README.md"
+version = "1.1.0"
+requires-python = ">=3.10"
+license = "MIT"
+license-files = [
+    "LICENSE",
+]
+authors = [
+    {name="devs_des1re", email="arjunbrij8811@gmail.com"},
+    {name="Eivind Teig", email="eivind.teig@gmail.com"},
+]
+maintainers = [
+    {name="devs_des1re", email="arjunbrij8811@gmail.com"},
+]
+keywords = [
+    "app",
+    "macOS",
+    "windows",
+    "linux",
+    "flatpak",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Programming Language :: Python :: 3 :: Only",
+    "Topic :: Software Development",
+    "Topic :: Utilities",
+]
+dependencies = [
+    "pip >= 25.2",
+    "setuptools >= 80",
+    "PySide6-Essentials ~= 6.8",
+    "darkdetect ~= 0.8.0",
+]
+
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["qof"]
+namespaces = false
+
+[tool.setuptools.package-data]
+mypkg = ["*.txt", "*.rst"]
+
+
 # This project was generated with 0.3.24 using template: https://github.com/beeware/briefcase-template @ v0.3.24
 [tool.briefcase]
 project_name = "qof"
 bundle = "com.example"
-version = "1.1.0"
 url = "https://github.com/devs-des1re/qof/tree/main"
 license.file = "LICENSE"
 author = "devs_des1re"
