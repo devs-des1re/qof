@@ -12,7 +12,6 @@ from PySide6.QtCore import Qt, QSettings, QStandardPaths
 
 from darkdetect import isDark
 from pathlib import Path
-import importlib.metadata
 import sys
 import os
 import shutil
@@ -330,5 +329,6 @@ def main():
 if __name__ == "__main__":
 
     main()
+
 
 
