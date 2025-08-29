@@ -250,6 +250,8 @@ class MainWindow(QMainWindow):
         self.settings.setValue("Table Data", self.table_to_list())
         print(self.table_to_list())
 
+        return super().closeEvent(event)
+
 class ConsoleWindow(QTextEdit):
     def __init__(self):
         super().__init__()
@@ -328,4 +330,5 @@ def main():
     sys.exit(app.exec())
 
 if __name__ == "__main__":
+
     main()
