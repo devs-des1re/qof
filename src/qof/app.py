@@ -1,38 +1,49 @@
-# Libraries
+"""Module docstring"""
+import os
+from pathlib import Path
+import shutil
+import sys
+
 from PySide6.QtWidgets import (
-    QApplication, QMainWindow, QWidget,
-    QVBoxLayout, QHBoxLayout,
-    QTableWidget, QTableWidgetItem, QHeaderView,
-    QPushButton, QLineEdit, QTextEdit,
-    QFileDialog, QMessageBox,
-    QStyledItemDelegate
+    QApplication,
+    QMainWindow,
+    QWidget,
+    QVBoxLayout,
+    QHBoxLayout,
+    QTableWidget,
+    QTableWidgetItem,
+    QHeaderView,
+    QPushButton,
+    QLineEdit,
+    QTextEdit,
+    QFileDialog,
+    QMessageBox,
+    QStyledItemDelegate,
 )
 from PySide6.QtGui import QPixmap, QFont, QColor, QPen
 from PySide6.QtCore import Qt, QSettings, QStandardPaths
 
 from darkdetect import isDark
-from pathlib import Path
-import sys
-import os
-import shutil
 
-# Main Window
+
+
 class MainWindow(QMainWindow):
+    """Main window class"""
     def __init__(self):
         super().__init__()
         self.resources_path = Path(__file__).parent / "resources"
-        self.WIDTH = 400
-        self.HEIGHT = 400
+        self.width = 400
+        self.height = 400
         self.setWindowTitle("qof")
-        self.setGeometry(0, 0, self.WIDTH, self.HEIGHT)
-        self.setFixedSize(self.WIDTH, self.HEIGHT)
+        self.setGeometry(0, 0, self.width, self.height)
+        self.setFixedSize(self.width, self.height)
         self.setWindowIcon(QPixmap(self.resources_path / "icon.ico"))
-
-        self.__init__UI()
+        self.folder_path = None
+        self._init__ui()
         self.__init__settings()
         self.__init__console()
 
-    def __init__UI(self):
+    def _init__ui(self):
         self.central_widget = QWidget()
         self.setCentralWidget(self.central_widget)
         self.main_layout = QVBoxLayout(self.central_widget)
@@ -91,8 +102,11 @@ class MainWindow(QMainWindow):
             self.folder_location.setText(self.settings.value("Folder Location"))
             self.folder_path = self.settings.value("Folder Location")
             self.list_to_table(self.settings.value("Table Data"))
-        except:
-            self.folder_path = QStandardPaths.writableLocation(QStandardPaths.StandardLocation.DownloadLocation)
+        except Exception as e:
+            print('error', e)
+            self.folder_path = QStandardPaths.writableLocation(
+                QStandardPaths.StandardLocation.DownloadLocation
+            )
 
     def __init__console(self):
         self.console = ConsoleWindow()
@@ -100,12 +114,14 @@ class MainWindow(QMainWindow):
 
         sys.stdout = self.console
         sys.stderr = self.console
-        
+
         print("Console Initalized...")
 
     ### Button Connections ###
     def on_select_folder_button_clicked(self):
-        folder_path = QFileDialog.getExistingDirectory(self, "Select Folder", self.folder_path)
+        folder_path = QFileDialog.getExistingDirectory(
+            self, "Select Folder", self.folder_path
+        )
 
         if folder_path:
             self.folder_location.setText(folder_path)
@@ -123,7 +139,9 @@ class MainWindow(QMainWindow):
 
         ### Checkbox ###
         checkbox_item = QTableWidgetItem()
-        checkbox_item.setFlags(Qt.ItemFlag.ItemIsUserCheckable | Qt.ItemFlag.ItemIsEnabled)
+        checkbox_item.setFlags(
+            Qt.ItemFlag.ItemIsUserCheckable | Qt.ItemFlag.ItemIsEnabled
+        )
         checkbox_item.setCheckState(Qt.CheckState.Checked)
         self.folders_table.setItem(row, 2, checkbox_item)
 
@@ -134,11 +152,15 @@ class MainWindow(QMainWindow):
         if row != -1:
             self.folders_table.removeRow(row)
         else:
-            self.create_message(QMessageBox.Icon.Warning, "Please select a row to remove.")
+            self.create_message(
+                QMessageBox.Icon.Warning, "Please select a row to remove."
+            )
 
     def on_organize_button_clicked(self):
         if self.folder_location.text() == "":
-            self.create_message(QMessageBox.Icon.Warning, "A folder location hasn't been selected.")
+            self.create_message(
+                QMessageBox.Icon.Warning, "A folder location hasn't been selected."
+            )
             return
 
         row_count = self.folders_table.rowCount()
@@ -149,35 +171,58 @@ class MainWindow(QMainWindow):
 
             enabled = self.folders_table.item(row, 2)
             enabled = enabled.checkState()
-            
+
             if enabled == Qt.CheckState.Checked:
                 if folder_name != "" and extension_name != "":
                     try:
                         folder_path = f"{self.folder_location.text()}/{folder_name}"
                         os.makedirs(folder_path, exist_ok=True)
-                        print("-----------------------------------------------------------------")
+                        print(
+                            "-----------------------------------------------------------------"
+                        )
                         print(f"Success: Folder created '{folder_path}'")
                     except Exception as error:
-                        print("-----------------------------------------------------------------")
+                        print(
+                            "-----------------------------------------------------------------"
+                        )
                         print(f"Error: {error}")
-                        self.create_message(QMessageBox.Icon.Warning, "An error has occured while creating the folder.")
+                        self.create_message(
+                            QMessageBox.Icon.Warning,
+                            "An error has occured while creating the folder.",
+                        )
                         return
-                    
+
                     try:
                         for filename in os.listdir(self.folder_location.text()):
-                            file_path = os.path.join(self.folder_location.text(), filename)
+                            file_path = os.path.join(
+                                self.folder_location.text(), filename
+                            )
 
-                            if os.path.isfile(file_path) and filename.endswith(f".{extension_name.lower()}"):
+                            if os.path.isfile(file_path) and filename.endswith(
+                                f".{extension_name.lower()}"
+                            ):
                                 shutil.move(file_path, folder_path)
-                                print("-----------------------------------------------------------------")
-                                print(f"Success: Moved '{file_path}' to '{folder_path}'")
+                                print(
+                                    "-----------------------------------------------"
+                                    "------------------"
+                                )
+                                print(
+                                    f"Success: Moved '{file_path}' to '{folder_path}'"
+                                )
                     except Exception as error:
-                        print("-----------------------------------------------------------------")
+                        print(
+                            "-----------------------------------------------------------------"
+                        )
                         print(f"Error: {error}")
-                        self.create_message(QMessageBox.Icon.Warning, "An error has occured while moving a file.")
+                        self.create_message(
+                            QMessageBox.Icon.Warning,
+                            "An error has occured while moving a file.",
+                        )
                         return
-        
-        self.create_message(QMessageBox.Icon.Information, "Your files have been successfully organized!")
+
+        self.create_message(
+            QMessageBox.Icon.Information, "Your files have been successfully organized!"
+        )
 
     ### Item Changed ###
     def on_item_changed(self, item):
@@ -186,7 +231,6 @@ class MainWindow(QMainWindow):
                 item.setText("Enabled")
             else:
                 item.setText("Disabled")
-
 
     ### Quick Functions ###
     def create_message(self, icon, text):
@@ -209,7 +253,7 @@ class MainWindow(QMainWindow):
                 row_data.append(item.text() if item else "")
             data.append(row_data)
         return data
-    
+
     def list_to_table(self, data):
         if data != []:
             self.folders_table.setRowCount(len(data))
@@ -219,22 +263,29 @@ class MainWindow(QMainWindow):
                 for col, value in enumerate(row_data):
                     if col == 2:
                         item = QTableWidgetItem()
-                        item.setFlags(Qt.ItemFlag.ItemIsUserCheckable | Qt.ItemFlag.ItemIsEnabled)
+                        item.setFlags(
+                            Qt.ItemFlag.ItemIsUserCheckable | Qt.ItemFlag.ItemIsEnabled
+                        )
 
                         if str(value) == "Enabled":
                             item.setCheckState(Qt.CheckState.Checked)
                         else:
                             item.setCheckState(Qt.CheckState.Unchecked)
-                        
+
                         self.folders_table.setItem(row, col, item)
                         self.folders_table.setRowHeight(row, 39)
                     else:
-                        self.folders_table.setItem(row, col, QTableWidgetItem(str(value)))
+                        self.folders_table.setItem(
+                            row, col, QTableWidgetItem(str(value))
+                        )
                         self.folders_table.setRowHeight(row, 39)
 
     ### Set Stylesheet ###
     def set_stylesheet(self):
-        with open(f"{str(self.resources_path)}\stylesheets\{'dark' if isDark() else 'light'}.txt") as file:
+        with open(
+            f"{str(self.resources_path)}\\stylesheets\\{'dark' if isDark() else 'light'}.txt",
+            encoding='utf-8',
+        ) as file:
             style = file.read()
             self.setStyleSheet(style)
 
@@ -248,6 +299,7 @@ class MainWindow(QMainWindow):
         self.settings.setValue("Folder Location", self.folder_location.text())
         self.settings.setValue("Table Data", self.table_to_list())
         print(self.table_to_list())
+        return super().closeEvent(event)
 
         return super().closeEvent(event)
 
@@ -260,20 +312,22 @@ class ConsoleWindow(QTextEdit):
         self.setWindowIcon(QPixmap(self.resources_path / "Icon.ico"))
         self._buffer = ""
 
-        self.__init__UI()
+        self._init__ui()
 
-    def __init__UI(self):
+    def _init__ui(self):
         self.setFocusPolicy(Qt.FocusPolicy.NoFocus)
         self.setReadOnly(True)
         self.font = QFont("Monospace", 10)
         self.setFont(self.font)
 
-        self.setStyleSheet("""
+        self.setStyleSheet(
+            """
             QTextEdit {
                 background-color: transparent;
                 font: Roboto;
             }
-        """)
+        """
+        )
 
     def write(self, text):
         self._buffer += text
@@ -287,6 +341,7 @@ class ConsoleWindow(QTextEdit):
         if self._buffer.strip():
             self.insertPlainText(self._buffer + "\n")
         self._buffer = ""
+
 
 class CustomDelegate(QStyledItemDelegate):
     def paint(self, painter, option, index):
@@ -305,18 +360,19 @@ class CustomDelegate(QStyledItemDelegate):
                 painter.drawLine(rect.topRight(), rect.bottomRight())
 
             total_rows = index.model().rowCount()
-            
+
             if index.row() < total_rows - 1:
                 painter.drawLine(rect.bottomLeft(), rect.bottomRight())
 
         finally:
             painter.restore()
 
-    def get_color(self):
+    @staticmethod
+    def get_color():
         if isDark():
             return QColor(255, 255, 255)
-        else:
-            return QColor(85, 85, 85)
+        return QColor(85, 85, 85)
+
 
 # Main
 def main():
@@ -326,9 +382,6 @@ def main():
     window.show()
     sys.exit(app.exec())
 
+
 if __name__ == "__main__":
-
     main()
-
-
-
