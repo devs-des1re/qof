@@ -1,6 +1,6 @@
 [build-system]
 requires = [
-    "setuptools >= 80",
+    "setuptools >= 80.9",
     "setuptools_scm >= 9.2",
 ]
 build-backend = "setuptools.build_meta"
@@ -45,8 +45,8 @@ classifiers = [
     "Topic :: Utilities",
 ]
 dependencies = [
-    "pip >= 25.2",
-    "setuptools >= 80",
+    "pip >= 21.2",
+    "setuptools >= 80.9",
     "PySide6-Essentials ~= 6.8",
     "darkdetect ~= 0.8.0",
 ]
@@ -185,4 +185,5 @@ supported = false
 # Web deployments
 [tool.briefcase.app.qof.web]
 supported = false
+
 
