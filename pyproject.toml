@@ -10,7 +10,7 @@ name = "qof"
 description = "qof | Quickly Organize Files!"
 # requires-python = ">= 3.10"
 readme = "README.md"
-version = "1.1.0"
+version = "1.1.1"
 requires-python = ">=3.10"
 license = "MIT"
 license-files = [
@@ -185,5 +185,6 @@ supported = false
 # Web deployments
 [tool.briefcase.app.qof.web]
 supported = false
+
 
 
