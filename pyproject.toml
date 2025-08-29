@@ -8,9 +8,8 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "qof"
 description = "qof | Quickly Organize Files!"
-# requires-python = ">= 3.10"
 readme = "README.md"
-version = "1.1.3"
+version = "1.1.4"
 requires-python = ">=3.10"
 license = "MIT"
 license-files = [
@@ -47,7 +46,7 @@ classifiers = [
 dependencies = [
     "pip >= 21.2",
     "setuptools >= 80.9",
-    "PySide6-Essentials ~= 6.8",
+    "PySide6-Essentials ~= 6.9",
     "darkdetect ~= 0.8.0",
 ]
 
@@ -185,6 +184,7 @@ supported = false
 # Web deployments
 [tool.briefcase.app.qof.web]
 supported = false
+
 
 
 
