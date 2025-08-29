@@ -321,10 +321,8 @@ class CustomDelegate(QStyledItemDelegate):
 
 # Main
 def main():
-    app_module = sys.modules["__main__"].__package__
-    metadata = importlib.metadata.metadata(app_module)
     app = QApplication(sys.argv)
-    app.setApplicationName(metadata["Formal-Name"])
+    app.setApplicationName("qof")
     window = MainWindow()
     window.show()
     sys.exit(app.exec())
@@ -332,4 +330,5 @@ def main():
 if __name__ == "__main__":
 
     main()
+
 
