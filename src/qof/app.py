@@ -5,7 +5,7 @@ from PySide6.QtWidgets import (
     QTableWidget, QTableWidgetItem, QHeaderView,
     QPushButton, QLineEdit, QTextEdit,
     QFileDialog, QMessageBox,
-    QStyledItemDelegate, QStyle
+    QStyledItemDelegate
 )
 from PySide6.QtGui import QPixmap, QFont, QColor, QPen
 from PySide6.QtCore import Qt, QSettings, QStandardPaths
@@ -332,3 +332,4 @@ def main():
 if __name__ == "__main__":
 
     main()
+
