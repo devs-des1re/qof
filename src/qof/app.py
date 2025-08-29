@@ -299,6 +299,7 @@ class MainWindow(QMainWindow):
         self.settings.setValue("Folder Location", self.folder_location.text())
         self.settings.setValue("Table Data", self.table_to_list())
         print(self.table_to_list())
+        return super().closeEvent(event)
 
 class ConsoleWindow(QTextEdit):
     def __init__(self):
