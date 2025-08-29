@@ -1,5 +1,4 @@
 """Module docstring"""
-import importlib.metadata
 import os
 from pathlib import Path
 import shutil
