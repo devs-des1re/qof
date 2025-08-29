@@ -1,4 +1,4 @@
-bat py[build-system]
+[build-system]
 requires = [
     "setuptools==80.9.0",
     "setuptools_scm==9.2.0",
@@ -9,7 +9,7 @@ build-backend = "setuptools.build_meta"
 name = "qof"
 description = "qof | Quickly Organize Files!"
 readme = "README.md"
-version = "1.1.22"
+version = "1.1.23"
 requires-python = ">=3.10"
 license = "MIT"
 license-files = [
@@ -178,6 +178,7 @@ supported = false
 # Web deployments
 [tool.briefcase.app.qof.web]
 supported = false
+
 
 
 
