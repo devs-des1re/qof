@@ -447,6 +447,10 @@ disable=raw-checker-failed,
         too-many-instance-attributes,
         broad-exception-caught,
         too-many-nested-blocks,
+	unreachable,
+	trailing-whitespace,
+	wrong-import-order,
+	missing-final-newline,
 
 
 # Enable the message, report, category or checker with the given id(s). You can
