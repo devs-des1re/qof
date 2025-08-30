@@ -63,7 +63,7 @@ def organize(
 
         success_msg("Successfully organized your files!")        
     else:
-        error_msg("Both arguments must be lists of the same length")
+        error_msg("Both arguments must be lists of the same length.")
 
 if __name__ == "__main__":
     app()
