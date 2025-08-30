@@ -47,7 +47,11 @@ dependencies = [
     "pip >= 21.2",
     "PySide6-Essentials >= 6.9.2",
     "darkdetect >= 0.8.0",
+    "typer ~= 0.16",
 ]
+
+[project.scripts]
+qof = "qof.cli:app"
 
 
 [tool.setuptools.packages.find]
