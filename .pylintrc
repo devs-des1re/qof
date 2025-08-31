@@ -450,7 +450,7 @@ disable=raw-checker-failed,
 	unreachable,
 	trailing-whitespace,
 	wrong-import-order,
-	missing-final-newline,
+	import-error,
 
 
 # Enable the message, report, category or checker with the given id(s). You can
