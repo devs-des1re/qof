@@ -440,17 +440,11 @@ disable=raw-checker-failed,
         use-implicit-booleaness-not-comparison-to-string,
         use-implicit-booleaness-not-comparison-to-zero,
         # These are future improvements.
-        missing-docstring,
-        line-too-long,
-        invalid-name,
         no-name-in-module,
         too-many-instance-attributes,
         broad-exception-caught,
         too-many-nested-blocks,
-	unreachable,
-	trailing-whitespace,
-	wrong-import-order,
-	import-error,
+
 
 
 # Enable the message, report, category or checker with the given id(s). You can

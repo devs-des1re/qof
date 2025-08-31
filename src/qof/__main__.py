@@ -1,4 +1,5 @@
-from qof.app import main
+"""The main application."""
+from .app import main
 
 
 if __name__ == "__main__":
