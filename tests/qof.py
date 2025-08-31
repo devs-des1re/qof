@@ -1,3 +1,4 @@
+"""Main testing file for qof."""
 import os
 import sys
 import tempfile
@@ -7,6 +8,9 @@ import pytest
 
 
 def run_tests():
+    """
+    Run tests.
+    """
     project_path = Path(__file__).parent.parent
     os.chdir(project_path)
 
