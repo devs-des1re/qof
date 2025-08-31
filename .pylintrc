@@ -447,8 +447,6 @@ disable=raw-checker-failed,
         too-many-instance-attributes,
         broad-exception-caught,
         too-many-nested-blocks,
-        unreachable,
-        trailing-whitespace,
         import-error,
 
 

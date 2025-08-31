@@ -302,8 +302,6 @@ class MainWindow(QMainWindow):
         print(self.table_to_list())
         return super().closeEvent(event)
 
-        return super().closeEvent(event)
-
 
 class ConsoleWindow(QTextEdit):
     def __init__(self):
