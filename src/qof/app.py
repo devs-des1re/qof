@@ -1,4 +1,5 @@
 """Module docstring"""
+
 import os
 from pathlib import Path
 import shutil
@@ -26,9 +27,9 @@ from PySide6.QtCore import Qt, QSettings, QStandardPaths
 from darkdetect import isDark
 
 
-
 class MainWindow(QMainWindow):
     """Main window class"""
+
     def __init__(self):
         super().__init__()
         self.resources_path = Path(__file__).parent / "resources"
@@ -103,7 +104,7 @@ class MainWindow(QMainWindow):
             self.folder_path = self.settings.value("Folder Location")
             self.list_to_table(self.settings.value("Table Data"))
         except Exception as e:
-            print('error', e)
+            print("error", e)
             self.folder_path = QStandardPaths.writableLocation(
                 QStandardPaths.StandardLocation.DownloadLocation
             )
@@ -284,7 +285,7 @@ class MainWindow(QMainWindow):
     def set_stylesheet(self):
         with open(
             f"{str(self.resources_path)}\\stylesheets\\{'dark' if isDark() else 'light'}.txt",
-            encoding='utf-8',
+            encoding="utf-8",
         ) as file:
             style = file.read()
             self.setStyleSheet(style)
@@ -302,6 +303,7 @@ class MainWindow(QMainWindow):
         return super().closeEvent(event)
 
         return super().closeEvent(event)
+
 
 class ConsoleWindow(QTextEdit):
     def __init__(self):
