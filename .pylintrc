@@ -442,8 +442,6 @@ disable=raw-checker-failed,
         # These are future improvements.
         missing-docstring,
         line-too-long,
-        invalid-name,
-        no-name-in-module,
         too-many-instance-attributes,
         broad-exception-caught,
         too-many-nested-blocks,

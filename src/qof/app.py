@@ -290,12 +290,11 @@ class MainWindow(QMainWindow):
             style = file.read()
             self.setStyleSheet(style)
 
-    ### Events ###
-    def keyPressEvent(self, event):
+    def keyPressEvent(self, event):  # pylint: disable=invalid-name
         if event.key() == Qt.Key.Key_F9:
             self.console.setVisible(not self.console.isVisible())
 
-    def closeEvent(self, event):
+    def closeEvent(self, event):  # pylint: disable=invalid-name
         self.settings.setValue("Window Position", self.pos())
         self.settings.setValue("Folder Location", self.folder_location.text())
         self.settings.setValue("Table Data", self.table_to_list())
