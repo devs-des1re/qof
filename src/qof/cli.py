@@ -1,12 +1,12 @@
-# Libraries
-import typer
+import os
+import pathlib
+import shutil
+from typing import List
+
 from rich.console import Console
 from rich.panel import Panel
+import typer
 
-import os
-import shutil
-import pathlib
-from typing import List
 
 # App
 app = typer.Typer()
