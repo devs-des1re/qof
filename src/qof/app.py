@@ -120,6 +120,9 @@ class MainWindow(QMainWindow):
 
     ### Button Connections ###
     def on_select_folder_button_clicked(self):
+        """
+        This method is called when a folder is selected.
+        """
         folder_path = QFileDialog.getExistingDirectory(
             self, "Select Folder", self.folder_path
         )
@@ -129,16 +132,17 @@ class MainWindow(QMainWindow):
             self.folder_path = folder_path
 
     def on_add_button_clicked(self):
+        """
+        This method is called when an add button is clicked.
+        """
         row = self.folders_table.rowCount()
         self.folders_table.insertRow(row)
 
-        ### First Two Columns ###
         for col in range(2):
             item = QTableWidgetItem()
             item.setFlags(item.flags() | Qt.ItemIsEditable)
             self.folders_table.setItem(row, col, item)
 
-        ### Checkbox ###
         checkbox_item = QTableWidgetItem()
         checkbox_item.setFlags(
             Qt.ItemFlag.ItemIsUserCheckable | Qt.ItemFlag.ItemIsEnabled
@@ -149,6 +153,9 @@ class MainWindow(QMainWindow):
         self.folders_table.setRowHeight(row, 39)
 
     def on_remove_button_clicked(self):
+        """
+        This method is called when a remove button is clicked.
+        """
         row = self.folders_table.currentRow()
         if row != -1:
             self.folders_table.removeRow(row)
@@ -157,7 +164,12 @@ class MainWindow(QMainWindow):
                 QMessageBox.Icon.Warning, "Please select a row to remove."
             )
 
-    def on_organize_button_clicked(self):
+    def on_organize_button_clicked(self) -> None:
+        """
+        This method is called when an organize button is clicked.
+        This is the main process for organizing folders.
+        :return: None
+        """
         if self.folder_location.text() == "":
             self.create_message(
                 QMessageBox.Icon.Warning, "A folder location hasn't been selected."
@@ -225,16 +237,24 @@ class MainWindow(QMainWindow):
             QMessageBox.Icon.Information, "Your files have been successfully organized!"
         )
 
-    ### Item Changed ###
-    def on_item_changed(self, item):
+    @staticmethod
+    def on_item_changed(item):
+        """
+        This static method is called when an item is changed.
+        :param item:
+        """
         if item.column() == 2:
             if item.checkState() == Qt.Checked:
                 item.setText("Enabled")
             else:
                 item.setText("Disabled")
 
-    ### Quick Functions ###
     def create_message(self, icon, text):
+        """
+        This method is called when a new message has been created.
+        :param icon: QMessageBox.Icon
+        :param text: String
+        """
         message_box = QMessageBox(self)
         message_box.setWindowTitle("qof")
         message_box.setText(text)
@@ -242,7 +262,11 @@ class MainWindow(QMainWindow):
 
         message_box.exec()
 
-    def table_to_list(self):
+    def table_to_list(self) -> list:
+        """
+        This method is called when a table is selected.
+        :return: A list of row data.
+        """
         rows = self.folders_table.rowCount()
         cols = self.folders_table.columnCount()
         data = []
@@ -255,8 +279,12 @@ class MainWindow(QMainWindow):
             data.append(row_data)
         return data
 
-    def list_to_table(self, data):
-        if data != []:
+    def list_to_table(self, data: list):
+        """
+        This method is called when a list is selected.
+        :param data: list.
+        """
+        if data:
             self.folders_table.setRowCount(len(data))
             self.folders_table.setColumnCount(len(data[0]) if data else 0)
 
@@ -281,8 +309,12 @@ class MainWindow(QMainWindow):
                         )
                         self.folders_table.setRowHeight(row, 39)
 
-    ### Set Stylesheet ###
+
     def set_stylesheet(self):
+        """
+        This method sets the stylesheet for the Qt window to either dark
+        or light.
+        """
         with open(
             f"{str(self.resources_path)}\\stylesheets\\{'dark' if isDark() else 'light'}.txt",
             encoding="utf-8",
@@ -291,10 +323,20 @@ class MainWindow(QMainWindow):
             self.setStyleSheet(style)
 
     def keyPressEvent(self, event):  # pylint: disable=invalid-name
+        """
+        This method  is called when a key is pressed, and if the event
+        key is F9, the console is shown.
+        :param event:
+        """
         if event.key() == Qt.Key.Key_F9:
             self.console.setVisible(not self.console.isVisible())
 
     def closeEvent(self, event):  # pylint: disable=invalid-name
+        """
+        This method is called when the window is closed.
+        :param event:
+        :return:
+        """
         self.settings.setValue("Window Position", self.pos())
         self.settings.setValue("Folder Location", self.folder_location.text())
         self.settings.setValue("Table Data", self.table_to_list())
@@ -303,6 +345,7 @@ class MainWindow(QMainWindow):
 
 
 class ConsoleWindow(QTextEdit):
+    """Console Window"""
     def __init__(self):
         super().__init__()
         self.resources_path = Path(__file__).parent / "resources"
@@ -329,6 +372,10 @@ class ConsoleWindow(QTextEdit):
         )
 
     def write(self, text):
+        """
+        This method writes the text to the console.
+        :param text:
+        """
         self._buffer += text
         lines = self._buffer.split("\n")
         for line in lines[:-1]:
@@ -337,13 +384,23 @@ class ConsoleWindow(QTextEdit):
         self._buffer = lines[-1]
 
     def flush(self):
+        """
+        This method removes the text from the console.
+        """
         if self._buffer.strip():
             self.insertPlainText(self._buffer + "\n")
         self._buffer = ""
 
 
 class CustomDelegate(QStyledItemDelegate):
+    """Display and editor data items."""
     def paint(self, painter, option, index):
+        """
+        Renders the delegate to the painter.
+        :param painter:
+        :param option:
+        :param index:
+        """
         super().paint(painter, option, index)
 
         painter.save()
@@ -367,7 +424,11 @@ class CustomDelegate(QStyledItemDelegate):
             painter.restore()
 
     @staticmethod
-    def get_color():
+    def get_color() -> QColor:
+        """
+        Returns the QColor depending on if you have dark- or light-mode.
+        :return: QColor
+        """
         if isDark():
             return QColor(255, 255, 255)
         return QColor(85, 85, 85)
@@ -375,6 +436,9 @@ class CustomDelegate(QStyledItemDelegate):
 
 # Main
 def main():
+    """
+    Setup the main application window.
+    """
     app = QApplication(sys.argv)
     app.setApplicationName("qof")
     window = MainWindow()

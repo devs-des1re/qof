@@ -1,3 +1,4 @@
+"""Cli interface for qof application."""
 import os
 import pathlib
 import shutil
@@ -8,18 +9,24 @@ from rich.panel import Panel
 import typer
 
 
-# App
 app = typer.Typer()
 console = Console()
 
 
-# Functions
 def error_msg(msg: str):
+    """
+    Print error message to the console.
+    :param msg:
+    """
     console.print(Panel.fit(msg, title="Error", title_align="left", border_style="red"))
     raise typer.Exit()
 
 
 def success_msg(msg: str):
+    """
+    Print success message to the console.
+    :param msg:
+    """
     console.print(
         Panel.fit(msg, title="Success", title_align="left", border_style="green")
     )
@@ -31,6 +38,11 @@ def organize(
     folders: List[str] = typer.Option(..., "--folder", help="List of folder names"),
     exts: List[str] = typer.Option(..., "--ext", help="List of exts to organize"),
 ):
+    """
+    Organize folders into subfolders.
+    :param folders:
+    :param exts:
+    """
     if len(folders) == len(exts):
         for index, folder in enumerate(folders):
             cwd = pathlib.Path.cwd()
